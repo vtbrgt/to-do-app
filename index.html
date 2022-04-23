@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Todo app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Todo</h1>
+      <div>
+        <input type="checkbox" class="checkbox" id="chk" />
+
+        <label class="label" for="chk">
+          <img class="switch_tema" />
+        </label>
+      </div>
+    </div>
+
+    <div class="adicionar_to_do">
+      <div class="circulo"></div>
+      <input type="text" id="to_do_input" placeholder="Create a new todo..." />
+    </div>
+
+    <div class="lista_itens">
+      <ul class="lista">
+        <li class="item">
+          <div class="circulo"></div>
+          <p class="item_texto">Complete online JavaScript course</p>
+          <div class="deletar_item"></div>
+        </li>
+        <li class="item">
+          <div class="circulo"></div>
+          <p class="item_texto">Jog around the park 3x</p>
+          <div class="deletar_item"></div>
+        </li>
+        <li class="item">
+          <div class="circulo"></div>
+          <p class="item_texto">10 minutes meditation</p>
+          <div class="deletar_item"></div>
+        </li>
+        <li class="item">
+          <div class="circulo"></div>
+          <p class="item_texto">Read for 1 hour</p>
+          <div class="deletar_item"></div>
+        </li>
+        <li class="item">
+          <div class="circulo"></div>
+          <p class="item_texto">Pick up groceries</p>
+          <div class="deletar_item"></div>
+        </li>
+        <li class="item">
+          <div class="circulo"></div>
+          <p class="item_texto">Complete Todo App on Frontend Mentor</p>
+          <div class="deletar_item"></div>
+        </li>
+        <li class="item">
+          <p class="item_texto">_ items left</p>
+          <p class="item_texto">Clear completed</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="filtrar_itens">
+      <p>All</p>
+      <p>Active</p>
+      <p>Completed</p>
+    </div>
+
+    <p class="reorganizar_itens">Drag and drop to reorder list</p>
+    <script src="script.js"></script>
+  </body>
+</html>
