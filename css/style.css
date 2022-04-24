@@ -61,6 +61,7 @@ body.dark {
   width: 20px;
   height: 20px;
   background-size: cover;
+  transition: background 0.2s linear;
 }
 
 .switch_tema.dark {
@@ -78,6 +79,7 @@ body.dark {
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
+  transition: background 0.2s linear;
 }
 
 .adicionar_to_do.dark {
@@ -96,6 +98,7 @@ body.dark {
   background: var(--cinza-claro);
   border: transparent;
   width: 100%;
+  transition: background 0.2s linear;
 }
 
 #to_do_input.dark {
@@ -121,6 +124,7 @@ body.dark {
   justify-content: space-between;
   align-items: center;
   border-bottom: var(--azul-acinzentado-escuro) solid 0.5px;
+  transition: background 0.2s linear;
 }
 
 .item.dark {
@@ -143,6 +147,7 @@ body.dark {
   font-size: 13px;
   padding: 0 1rem;
   text-align: center;
+  transition: color 0.2s linear;
 }
 
 .item_texto.dark {
@@ -167,6 +172,7 @@ body.dark {
   color: var(--azul-acinzentado-mais-escuro);
   font-size: 14px;
   margin-bottom: 2rem;
+  transition: background 0.2s linear;
 }
 
 .filtrar_itens.dark {
@@ -185,6 +191,7 @@ body.dark {
   text-align: center;
   color: var(--azul-acinzentado-mais-escuro);
   font-size: 14px;
+  transition: color 0.2s linear;
 }
 
 .reorganizar_itens.dark {
