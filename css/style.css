@@ -198,6 +198,10 @@ body.dark {
   color: var(--azul-acinzentado-escuro-2);
 }
 
+.done {
+  text-decoration: line-through;
+}
+
 @media (min-width: 1024px) {
   body {
     background-image: url(../images/bg-desktop-light.jpg);
