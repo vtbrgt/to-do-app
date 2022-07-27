@@ -12,6 +12,7 @@ chk.addEventListener("click", () => {
 
 const input = document.getElementById("to_do_input");
 let tarefas = document.querySelectorAll(".item");
+let quantidadeTarefas = tarefas.length;
 const lista = document.querySelector(".lista");
 
 function adicionarTarefa() {
@@ -38,6 +39,8 @@ function adicionarTarefa() {
   input.value = "";
   tarefas = document.querySelectorAll(".item");
   theme = document.querySelectorAll(".theme");
+  quantidadeTarefas = tarefas.length;
+  atualizaQuantidade()
 }
 
 /* ADICIONAR TAREFA AO PRESSIONAR 'ENTER' */
@@ -48,3 +51,12 @@ function addListaAfterKeypress() {
 }
 
 input.addEventListener("keypress", addListaAfterKeypress);
+
+/* QUANTIDADE DE TAREFAS NA LISTA */
+function atualizaQuantidade() {
+  const span = document.querySelector(".quantidade_tarefas");
+
+  span.innerText = quantidadeTarefas;
+}
+
+atualizaQuantidade();
