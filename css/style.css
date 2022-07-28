@@ -93,6 +93,12 @@ body.dark {
   height: 18px;
 }
 
+.circulo.done {
+  background-image: url("/images/icon-check.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .circulo:hover {
   cursor: pointer;
 }
