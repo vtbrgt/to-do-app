@@ -23,11 +23,20 @@ function adicionarTarefa() {
   let novaTarefa = document.createTextNode(input.value);
 
   novoItem.classList.add("item");
-  novoItem.classList.add("theme");
   circulo.classList.add("circulo");
   texto.classList.add("item_texto");
-  texto.classList.add("theme");
   deletar.classList.add("deletar_item");
+
+  if (document.body.classList.contains("dark")) {
+    novoItem.classList.add("theme");
+    novoItem.classList.add("dark");
+    texto.classList.add("theme");
+    texto.classList.add("dark");
+  } else {
+    novoItem.classList.add("theme");
+    texto.classList.add("theme");
+  }
+  
 
   texto.appendChild(novaTarefa);
   novoItem.appendChild(circulo);
