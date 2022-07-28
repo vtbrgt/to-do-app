@@ -1,20 +1,28 @@
-// troca de tema
+const input = document.getElementById("to_do_input");
+let tarefas = Array.from(document.querySelectorAll(".item"));
+const lista = document.querySelector(".lista");
+let quantidadeTarefas = tarefas.length;
+let circulos = Array.from(document.querySelectorAll('.circulo'));
 
 const chk = document.getElementById("chk");
 let theme = document.querySelectorAll(".theme");
 
+// TROCA DE TEMA
 chk.addEventListener("click", () => {
   document.body.classList.toggle("dark");
   theme.forEach((each) => each.classList.toggle("dark"));
 });
 
-// funcionalidades 
+// QUANTIDADE DE TAREFAS NA LISTA 
+function atualizaQuantidade() {
+  const span = document.querySelector(".quantidade_tarefas");
 
-const input = document.getElementById("to_do_input");
-let tarefas = document.querySelectorAll(".item");
-let quantidadeTarefas = tarefas.length;
-const lista = document.querySelector(".lista");
+  span.innerText = quantidadeTarefas;
+}
 
+document.addEventListener('load', atualizaQuantidade());
+
+// FUNCIONALIDADES 
 function adicionarTarefa() {
   let novoItem = document.createElement("li");
   let circulo = document.createElement("div");
@@ -46,13 +54,14 @@ function adicionarTarefa() {
   lista.appendChild(novoItem);
 
   input.value = "";
-  tarefas = document.querySelectorAll(".item");
+  tarefas.push(novoItem);
+  circulos.push(circulo);
   theme = document.querySelectorAll(".theme");
   quantidadeTarefas = tarefas.length;
-  atualizaQuantidade()
+  atualizaQuantidade();
 }
 
-/* ADICIONAR TAREFA AO PRESSIONAR 'ENTER' */
+  // ADICIONAR TAREFA AO PRESSIONAR 'ENTER'
 function addListaAfterKeypress() {
   if (event.which === 13) {
     adicionarTarefa();
@@ -61,11 +70,16 @@ function addListaAfterKeypress() {
 
 input.addEventListener("keypress", addListaAfterKeypress);
 
-/* QUANTIDADE DE TAREFAS NA LISTA */
-function atualizaQuantidade() {
-  const span = document.querySelector(".quantidade_tarefas");
+  // MARCAR TAREFA COMO CONCLUÍDA
+circulos.forEach((circulo) => {
+  tarefas = Array.from(document.querySelectorAll(".item"));
+  circulo.addEventListener('click', (event) => {
+    let i = circulos.indexOf(event.target)
+    tarefas[i].classList.toggle('done');
+  })
+})
 
-  span.innerText = quantidadeTarefas;
-}
 
-atualizaQuantidade();
+/* if (event.target.tagName === 'DIV') {
+    event.target.classList.toggle('done')
+  } */
