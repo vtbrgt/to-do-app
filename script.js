@@ -61,6 +61,8 @@ function adicionarTarefa() {
   atualizaQuantidade();
 }
 
+
+
   // ADICIONAR TAREFA AO PRESSIONAR 'ENTER'
 function addListaAfterKeypress() {
   if (event.which === 13) {
@@ -72,14 +74,11 @@ input.addEventListener("keypress", addListaAfterKeypress);
 
   // MARCAR TAREFA COMO CONCLUÍDA
 circulos.forEach((circulo) => {
-  tarefas = Array.from(document.querySelectorAll(".item"));
   circulo.addEventListener('click', (event) => {
-    let i = circulos.indexOf(event.target)
+    let i = circulos.indexOf(event.target);
+    console.log(i)
+
+    circulos[i].classList.toggle('done');
     tarefas[i].classList.toggle('done');
   })
 })
-
-
-/* if (event.target.tagName === 'DIV') {
-    event.target.classList.toggle('done')
-  } */
