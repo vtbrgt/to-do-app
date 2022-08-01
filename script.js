@@ -19,7 +19,6 @@ function atualizaQuantidade() {
   let quantidadeTarefas = tarefas.length;
 
   span.innerText = quantidadeTarefas;
-  console.log(quantidadeTarefas);
 }
 
 document.addEventListener('load', atualizaQuantidade());
@@ -90,20 +89,12 @@ function deletarTarefa() {
   deletes.forEach((item) => {
     item.addEventListener('click', (event) => {
       const i = deletes.indexOf(event.target);
+      console.log(i);
       event.target.parentElement.remove();
       tarefas.splice(i, 1);
+      deletes = Array.from(document.querySelectorAll('.deletar_item'));
       atualizaQuantidade();
     });
   });
 }
 deletarTarefa();
-
-// DELETAR TAREFA
-/* function deletarTarefa(e) {
-  if (e.target.className === 'deletar_item') {
-    e.target.parentElement.remove();
-  }
-  atualizaQuantidade();
-}
-
-lista.addEventListener('click', deletarTarefa); */
