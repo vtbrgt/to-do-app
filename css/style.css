@@ -94,6 +94,7 @@ body.dark {
 }
 
 .circulo.done {
+  background: transparent;
   background-image: url('/images/icon-check.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -147,6 +148,10 @@ body.dark {
 
 .item.dark {
   background: var(--azul-escuro-desaturado);
+}
+
+.item.dark.done {
+  background: var(--azul-acinzentado-mais-escuro-2);
 }
 
 .item:first-child {
@@ -253,6 +258,7 @@ body.dark {
 .done {
   text-decoration: line-through;
   color: var(--azul-acinzentado-escuro);
+  background: var(--azul-acinzentado-claro);
 }
 
 @media (min-width: 1024px) {
