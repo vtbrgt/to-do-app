@@ -57,7 +57,6 @@ function adicionarTarefa() {
   input.value = '';
   tarefas.push(novoItem);
   circulos.push(circulo);
-  deletes.push(deletar);
   theme = document.querySelectorAll('.theme');
   quantidadeTarefas = tarefas.length;
   atualizaQuantidade();
@@ -85,7 +84,7 @@ function tarefaConcluida() {
 }
 tarefaConcluida();
 
- // DELETAR TAREFA
+// DELETAR TAREFA
 function deletarTarefa(e) {
   if (e.target.className === 'deletar_item') {
     e.target.parentElement.remove();
@@ -96,3 +95,6 @@ function deletarTarefa(e) {
 lista.addEventListener('click', deletarTarefa);
 
 // trocar filtros no html por input radio e usar array.filter
+function limparConcluidos() {
+  // filter com elementos do array que possuem a classe "done"
+}
