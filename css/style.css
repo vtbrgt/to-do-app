@@ -159,15 +159,8 @@ body.dark {
   border-top-right-radius: 5px;
 }
 
-/*
-.item:last-child {
-  border: none;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-} */
-
 .item_texto {
-  /* color: var(--azul-acinzentado-mais-escuro); */
+  color: var(--azul-acinzentado-mais-escuro);
   font-size: 13px;
   padding: 0 1rem;
   text-align: center;
@@ -207,8 +200,7 @@ body.dark {
   height: 15px;
 }
 
-.deletar_item:hover,
-.clear:hover {
+.deletar_item:hover {
   cursor: pointer;
 }
 
@@ -234,12 +226,27 @@ body.dark {
   background: var(--azul-escuro-desaturado);
 }
 
-.filtrar_itens p {
+.filtrar_itens button {
   transition: color 0.2s linear;
+  color: var(--azul-acinzentado-mais-escuro);
+}
+
+.filtrar_itens button:active {
+  color: var(--azul-vivo);
+}
+
+button {
+  border: none;
+  padding: unset;
+  background: transparent;
+  font-family: inherit;
+}
+
+button:hover {
   cursor: pointer;
 }
 
-.filtrar_itens p:active {
+button.active {
   color: var(--azul-vivo);
 }
 
