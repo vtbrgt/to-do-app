@@ -100,9 +100,10 @@ function limparConcluidos() {
     if (tarefa.classList.contains('done')) {
       tarefa.remove();
       atualizaQuantidade();
+      tarefaConcluida();
     }
-  })
+  });
   // filter com elementos do array que possuem a classe "done" usar array.filter
 }
 
-clear.addEventListener('click' , limparConcluidos)
+clear.addEventListener('click', limparConcluidos);
