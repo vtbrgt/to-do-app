@@ -2,6 +2,7 @@ const input = document.getElementById('to_do_input');
 let tarefas = Array.from(document.querySelectorAll('.item'));
 const lista = document.querySelector('.lista');
 let circulos = Array.from(document.querySelectorAll('.circulo'));
+const clear = document.querySelector('.clear');
 
 const chk = document.getElementById('chk');
 let theme = document.querySelectorAll('.theme');
@@ -94,7 +95,14 @@ function deletarTarefa(e) {
 
 lista.addEventListener('click', deletarTarefa);
 
-// trocar filtros no html por input radio e usar array.filter
 function limparConcluidos() {
-  // filter com elementos do array que possuem a classe "done"
+  tarefas.filter((tarefa) => {
+    if (tarefa.classList.contains('done')) {
+      tarefa.remove();
+      atualizaQuantidade();
+    }
+  })
+  // filter com elementos do array que possuem a classe "done" usar array.filter
 }
+
+clear.addEventListener('click' , limparConcluidos)
