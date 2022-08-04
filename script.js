@@ -123,27 +123,26 @@ function filtrarElementos() {
           filtros[1].classList.remove('active')
           filtros[2].classList.remove('active')
           event.target.classList.add('active');
-         // lista.style.display = 'block';
+          Array.from(taskDone, task => task.style.display = 'flex')
+          Array.from(taskActive, task => task.style.display = 'flex')
+
         } if (event.target == filtros[1]) {
           filtros[0].classList.remove('active')
           filtros[2].classList.remove('active')
           event.target.classList.add('active');
-          lista.innerText = taskActive;
+          Array.from(taskDone, task => task.style.display = 'none')
+          Array.from(taskActive, task => task.style.display = 'flex')
           
           // taskDone.style.display = 'none';
         } if (event.target == filtros [2]) {
           filtros[0].classList.remove('active')
           filtros[1].classList.remove('active')
           event.target.classList.add('active');
-          lista.innerHTML = taskDone;
+          Array.from(taskActive, task => task.style.display = 'none')
+          Array.from(taskDone, task => task.style.display = 'flex')
           
-          // taskActive.style.display = 'none'
         }
     });
   });
 }
 filtrarElementos();
-
-function removerClasse(elemento) {
-  elemento.classList.remove('active')
-}
