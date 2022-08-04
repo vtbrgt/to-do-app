@@ -3,7 +3,7 @@ let tarefas = Array.from(document.querySelectorAll('.item'));
 let lista = document.querySelector('.lista');
 let circulos = Array.from(document.querySelectorAll('.circulo'));
 const clear = document.querySelector('.clear');
-const filtros = document.querySelectorAll('.filtrar_itens button');
+const filtros = Array.from(document.querySelectorAll('.filtrar_itens button'));
 
 const chk = document.getElementById('chk');
 let theme = document.querySelectorAll('.theme');
@@ -112,20 +112,38 @@ clear.addEventListener('click', limparConcluidos);
 function filtrarElementos() {
   filtros.forEach((filtro) => {
     filtro.addEventListener('click', (event) => {
-      if (filtro.classList.contains('active'))
+      const taskActive = tarefas.filter((tarefa) => {
+            return tarefa.className != 'item theme done';
+          });
+      const taskDone = tarefas.filter((tarefa) => {
+            return tarefa.className === 'item theme done';
+          });
+
         if (event.target == filtros[0]) {
-          /*         filtro.classList.remove('active'); */
+          filtros[1].classList.remove('active')
+          filtros[2].classList.remove('active')
           event.target.classList.add('active');
-          tarefas.style.display = 'block';
-        } else if (event.target == filtros[1]) {
-          /*         filtro.classList.remove('active'); */
+         // lista.style.display = 'block';
+        } if (event.target == filtros[1]) {
+          filtros[0].classList.remove('active')
+          filtros[2].classList.remove('active')
           event.target.classList.add('active');
+          lista.innerText = taskActive;
+          
+          // taskDone.style.display = 'none';
+        } if (event.target == filtros [2]) {
+          filtros[0].classList.remove('active')
+          filtros[1].classList.remove('active')
+          event.target.classList.add('active');
+          lista.innerHTML = taskDone;
+          
+          // taskActive.style.display = 'none'
         }
     });
   });
 }
 filtrarElementos();
 
-const all = tarefas.filter((tarefa) => {
-  return tarefa.className === 'done';
-});
+function removerClasse(elemento) {
+  elemento.classList.remove('active')
+}
