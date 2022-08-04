@@ -1,8 +1,9 @@
 const input = document.getElementById('to_do_input');
 let tarefas = Array.from(document.querySelectorAll('.item'));
-const lista = document.querySelector('.lista');
+let lista = document.querySelector('.lista');
 let circulos = Array.from(document.querySelectorAll('.circulo'));
 const clear = document.querySelector('.clear');
+const filtros = document.querySelectorAll('.filtrar_itens button');
 
 const chk = document.getElementById('chk');
 let theme = document.querySelectorAll('.theme');
@@ -103,7 +104,28 @@ function limparConcluidos() {
       tarefaConcluida();
     }
   });
-  // filter com elementos do array que possuem a classe "done" usar array.filter
 }
 
 clear.addEventListener('click', limparConcluidos);
+
+// filter com elementos do array que possuem a classe "done" usar array.filter
+function filtrarElementos() {
+  filtros.forEach((filtro) => {
+    filtro.addEventListener('click', (event) => {
+      if (filtro.classList.contains('active'))
+        if (event.target == filtros[0]) {
+          /*         filtro.classList.remove('active'); */
+          event.target.classList.add('active');
+          tarefas.style.display = 'block';
+        } else if (event.target == filtros[1]) {
+          /*         filtro.classList.remove('active'); */
+          event.target.classList.add('active');
+        }
+    });
+  });
+}
+filtrarElementos();
+
+const all = tarefas.filter((tarefa) => {
+  return tarefa.className === 'done';
+});
