@@ -15,16 +15,16 @@ chk.addEventListener('click', () => {
 });
 
 // QUANTIDADE DE TAREFAS NA LISTA
-function atualizaQuantidade() {
+function atualizaQuantidade(referencia) {
   tarefas = Array.from(document.querySelectorAll('.item'));
   circulos = Array.from(document.querySelectorAll('.circulo'));
   const span = document.querySelector('.quantidade_tarefas');
-  let quantidadeTarefas = tarefas.length;
+  let quantidadeTarefas = referencia.length;
 
   span.innerText = quantidadeTarefas;
 }
 
-document.addEventListener('load', atualizaQuantidade());
+document.addEventListener('load', atualizaQuantidade(tarefas));
 
 // FUNCIONALIDADES
 function adicionarTarefa() {
@@ -61,7 +61,7 @@ function adicionarTarefa() {
   circulos.push(circulo);
   theme = document.querySelectorAll('.theme');
   quantidadeTarefas = tarefas.length;
-  atualizaQuantidade();
+  atualizaQuantidade(tarefas);
   tarefaConcluida();
 }
 
@@ -91,7 +91,7 @@ function deletarTarefa(e) {
   if (e.target.className === 'deletar_item') {
     e.target.parentElement.remove();
   }
-  atualizaQuantidade();
+  atualizaQuantidade(tarefas);
 }
 
 lista.addEventListener('click', deletarTarefa);
@@ -100,7 +100,7 @@ function limparConcluidos() {
   tarefas.filter((tarefa) => {
     if (tarefa.classList.contains('done')) {
       tarefa.remove();
-      atualizaQuantidade();
+      atualizaQuantidade(tarefas);
       tarefaConcluida();
     }
   });
@@ -113,35 +113,36 @@ function filtrarElementos() {
   filtros.forEach((filtro) => {
     filtro.addEventListener('click', (event) => {
       const taskActive = tarefas.filter((tarefa) => {
-            return tarefa.className != 'item theme done';
-          });
+        return tarefa.className != 'item theme done';
+      });
       const taskDone = tarefas.filter((tarefa) => {
-            return tarefa.className === 'item theme done';
-          });
+        return tarefa.className === 'item theme done';
+      });
 
-        if (event.target == filtros[0]) {
-          filtros[1].classList.remove('active')
-          filtros[2].classList.remove('active')
-          event.target.classList.add('active');
-          Array.from(taskDone, task => task.style.display = 'flex')
-          Array.from(taskActive, task => task.style.display = 'flex')
-
-        } if (event.target == filtros[1]) {
-          filtros[0].classList.remove('active')
-          filtros[2].classList.remove('active')
-          event.target.classList.add('active');
-          Array.from(taskDone, task => task.style.display = 'none')
-          Array.from(taskActive, task => task.style.display = 'flex')
-          
-          // taskDone.style.display = 'none';
-        } if (event.target == filtros [2]) {
-          filtros[0].classList.remove('active')
-          filtros[1].classList.remove('active')
-          event.target.classList.add('active');
-          Array.from(taskActive, task => task.style.display = 'none')
-          Array.from(taskDone, task => task.style.display = 'flex')
-          
-        }
+      if (event.target == filtros[0]) {
+        filtros[1].classList.remove('active');
+        filtros[2].classList.remove('active');
+        event.target.classList.add('active');
+        Array.from(taskDone, (task) => (task.style.display = 'flex'));
+        Array.from(taskActive, (task) => (task.style.display = 'flex'));
+        atualizaQuantidade(tarefas);
+      }
+      if (event.target == filtros[1]) {
+        filtros[0].classList.remove('active');
+        filtros[2].classList.remove('active');
+        event.target.classList.add('active');
+        Array.from(taskDone, (task) => (task.style.display = 'none'));
+        Array.from(taskActive, (task) => (task.style.display = 'flex'));
+        atualizaQuantidade(taskActive);
+      }
+      if (event.target == filtros[2]) {
+        filtros[0].classList.remove('active');
+        filtros[1].classList.remove('active');
+        event.target.classList.add('active');
+        Array.from(taskActive, (task) => (task.style.display = 'none'));
+        Array.from(taskDone, (task) => (task.style.display = 'flex'));
+        atualizaQuantidade(taskDone);
+      }
     });
   });
 }
