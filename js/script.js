@@ -69,6 +69,7 @@ function adicionarTarefa() {
 function addListaAfterKeypress(tecla) {
   if (tecla.key === 'Enter' && input.value != '') {
     adicionarTarefa();
+    tarefaConcluida();
   }
 }
 
@@ -90,8 +91,9 @@ tarefaConcluida();
 function deletarTarefa(e) {
   if (e.target.className === 'deletar_item') {
     e.target.parentElement.remove();
+    tarefas = Array.from(document.querySelectorAll('.item'));
+    atualizaQuantidade(tarefas);
   }
-  atualizaQuantidade(tarefas);
 }
 
 lista.addEventListener('click', deletarTarefa);
