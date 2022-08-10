@@ -1,7 +1,5 @@
 # to-do-app
 
-🚧 **PROJETO EM CONSTRUÇÃO** 🚧
-
 ## Descrição do projeto
 
 Criar uma lista de tarefas onde o usuário possa adicionar, marcar como concluído e também excluir tarefas. Também é possível alternar entre tema claro e escuro. Usando challenge do [Frontend Mentor](https://www.frontendmentor.io/) como base.
@@ -16,3 +14,7 @@ Ao escolher esse projeto, pretendia me desafiar. Comecei a fazer algo além da m
 <img src="https://res.cloudinary.com/dz209s6jk/image/upload/q_auto:good,w_900/Challenges/llcq9eiv3ney5tkxgdtu.jpg" alt="Projeto Base - Desktop" width="600"/> <br>
 **Mobile (375px)** <br>
 <img src="https://res.cloudinary.com/dz209s6jk/image/upload/q_auto:good,w_900/Challenges/hieh9u8fnnptucjepnfu.jpg" alt="Projeto Base - Mobile" width="600"/>
+
+## Deploy
+
+Você pode checar o projeto em funcionamento [aqui](http://to-do-app-vtbrgt.vercel.app/).
