@@ -1,4 +1,4 @@
-import Sortable from 'https://to-do-app-vtbrgt.vercel.app/node_modules/sortablejs/modular/sortable.core.esm.js';
+import Sortable from '../node_modules/sortablejs/modular/sortable.core.esm.js';
 
 const ul = document.querySelector('#sortable-list');
 
