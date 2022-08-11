@@ -69,7 +69,6 @@ function adicionarTarefa() {
 function addListaAfterKeypress(tecla) {
   if (tecla.key === 'Enter' && input.value != '') {
     adicionarTarefa();
-    tarefaConcluida();
   }
 }
 
