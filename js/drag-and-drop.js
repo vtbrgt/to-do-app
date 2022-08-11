@@ -1,4 +1,4 @@
-import Sortable from '../node_modules/sortablejs/modular/sortable.core.esm.js';
+import Sortable from 'sortablejs';
 
 const ul = document.querySelector('#sortable-list');
 
