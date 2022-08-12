@@ -7,6 +7,7 @@ Criar uma lista de tarefas onde o usuário possa adicionar, marcar como concluí
 ### Objetivo de aprendizado
 
 Ao escolher esse projeto, pretendia me desafiar. Comecei a fazer algo além da minha capacidade, saindo da área de conforto e fiquei surpreso com o que consegui entregar em 7 dias. Pretendo daqui a um tempo retomar o projeto e terminar de montá-lo com todas as funções propostas.
+🚨**Projeto Finalizado**🚨
 
 #### Projeto base:
 
