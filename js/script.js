@@ -1,7 +1,6 @@
 const input = document.getElementById('to_do_input');
 let tarefas = Array.from(document.querySelectorAll('.item'));
 let lista = document.querySelector('.lista');
-let circulos = Array.from(document.querySelectorAll('.circulo'));
 const clear = document.querySelector('.clear');
 const filtros = Array.from(document.querySelectorAll('.filtrar_itens button'));
 
@@ -17,7 +16,6 @@ chk.addEventListener('click', () => {
 // QUANTIDADE DE TAREFAS NA LISTA
 function atualizaQuantidade(referencia) {
   tarefas = Array.from(document.querySelectorAll('.item'));
-  circulos = Array.from(document.querySelectorAll('.circulo'));
   const span = document.querySelector('.quantidade_tarefas');
   let quantidadeTarefas = referencia.length;
 
@@ -27,6 +25,8 @@ function atualizaQuantidade(referencia) {
 document.addEventListener('load', atualizaQuantidade(tarefas));
 
 // FUNCIONALIDADES
+
+  //ADICIONAR TAREFA
 function adicionarTarefa() {
   let novoItem = document.createElement('li');
   let circulo = document.createElement('div');
@@ -58,14 +58,12 @@ function adicionarTarefa() {
 
   input.value = '';
   tarefas.push(novoItem);
-  circulos.push(circulo);
   theme = document.querySelectorAll('.theme');
   quantidadeTarefas = tarefas.length;
   atualizaQuantidade(tarefas);
-  tarefaConcluida();
 }
 
-// ADICIONAR TAREFA AO PRESSIONAR 'ENTER'
+  // ADICIONAR TAREFA AO PRESSIONAR 'ENTER'
 function addListaAfterKeypress(tecla) {
   if (tecla.key === 'Enter' && input.value != '') {
     adicionarTarefa();
@@ -74,19 +72,19 @@ function addListaAfterKeypress(tecla) {
 
 input.addEventListener('keypress', addListaAfterKeypress);
 
-// MARCAR TAREFA COMO CONCLUÍDA
-function tarefaConcluida() {
-  circulos.forEach((circulo) => {
-    circulo.addEventListener('click', (event) => {
-      const i = circulos.indexOf(event.target);
-      circulos[i].classList.toggle('done');
-      tarefas[i].classList.toggle('done');
-    });
-  });
+  // MARCAR TAREFA COMO CONCLUÍDA
+function tarefaConcluida(e) {
+  if (e.target.className === 'circulo') {
+    e.target.classList.add('done');
+    e.target.parentElement.classList.add('done');
+  } else if (e.target.className === 'circulo done') {
+    e.target.classList.remove('done');
+    e.target.parentElement.classList.remove('done');
+  }
 }
-tarefaConcluida();
+lista.addEventListener('click', tarefaConcluida)
 
-// DELETAR TAREFA
+  // DELETAR TAREFA
 function deletarTarefa(e) {
   if (e.target.className === 'deletar_item') {
     e.target.parentElement.remove();
@@ -94,22 +92,20 @@ function deletarTarefa(e) {
     atualizaQuantidade(tarefas);
   }
 }
-
 lista.addEventListener('click', deletarTarefa);
 
+  // LIMPAR TAREFAS CONCLUÍDAS
 function limparConcluidos() {
   tarefas.filter((tarefa) => {
     if (tarefa.classList.contains('done')) {
       tarefa.remove();
-      atualizaQuantidade(tarefas);
-      tarefaConcluida();
     }
+    atualizaQuantidade(tarefas);
   });
 }
-
 clear.addEventListener('click', limparConcluidos);
 
-// filter com elementos do array que possuem a classe "done" usar array.filter
+  // FILTRAR ITENS DA TAREFA
 function filtrarElementos() {
   filtros.forEach((filtro) => {
     filtro.addEventListener('click', (event) => {
