@@ -10,7 +10,7 @@ let theme = document.querySelectorAll('.theme');
 // TROCA DE TEMA
 chk.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-  theme.forEach((each) => each.classList.toggle('dark'));
+  theme.forEach((theme) => theme.classList.toggle('dark'));
 });
 
 // QUANTIDADE DE TAREFAS NA LISTA
@@ -87,6 +87,7 @@ function tarefaConcluida(e) {
     e.target.classList.remove('done');
     e.target.parentElement.classList.remove('done');
   }
+  localStorage.setItem('lista', JSON.stringify(lista.innerHTML));
 }
 lista.addEventListener('click', tarefaConcluida);
 
@@ -108,6 +109,7 @@ function limparConcluidos() {
       tarefa.remove();
     }
     atualizaQuantidade(tarefas);
+    localStorage.setItem('lista', JSON.stringify(lista.innerHTML));
   });
 }
 clear.addEventListener('click', limparConcluidos);
@@ -129,7 +131,6 @@ function filtrarElementos() {
         event.target.classList.add('active');
         Array.from(taskDone, (task) => (task.style.display = 'flex'));
         Array.from(taskActive, (task) => (task.style.display = 'flex'));
-        atualizaQuantidade(tarefas);
       }
       if (event.target == filtros[1]) {
         filtros[0].classList.remove('active');
@@ -137,7 +138,6 @@ function filtrarElementos() {
         event.target.classList.add('active');
         Array.from(taskDone, (task) => (task.style.display = 'none'));
         Array.from(taskActive, (task) => (task.style.display = 'flex'));
-        atualizaQuantidade(taskActive);
       }
       if (event.target == filtros[2]) {
         filtros[0].classList.remove('active');
@@ -145,16 +145,24 @@ function filtrarElementos() {
         event.target.classList.add('active');
         Array.from(taskActive, (task) => (task.style.display = 'none'));
         Array.from(taskDone, (task) => (task.style.display = 'flex'));
-        atualizaQuantidade(taskDone);
       }
     });
   });
 }
 filtrarElementos();
 
+//retornando lista usada anteriormente
 function mostraListaUsuario() {
   const listaUsuario = JSON.parse(localStorage.getItem('lista'));
 
-  lista.innerHTML = listaUsuario;
+  if (listaUsuario) {
+    lista.innerHTML = listaUsuario;
+  }
 }
 mostraListaUsuario();
+
+//atualizando arrays
+setTimeout(() => {
+  tarefas = Array.from(document.querySelectorAll('.item'));
+  theme = document.querySelectorAll('.theme');
+}, 2);
