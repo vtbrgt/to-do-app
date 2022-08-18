@@ -14,25 +14,24 @@ chk.addEventListener('click', () => {
 });
 
 // QUANTIDADE DE TAREFAS NA LISTA
-function atualizaQuantidade(referencia) {
+function atualizaQuantidade(tarefas) {
   tarefas = Array.from(document.querySelectorAll('.item'));
   const span = document.querySelector('.quantidade_tarefas');
-  let quantidadeTarefas = referencia.length;
+  let quantidadeTarefas = tarefas.length;
 
   span.innerText = quantidadeTarefas;
 }
-
-document.addEventListener('load', atualizaQuantidade(tarefas));
+setTimeout(atualizaQuantidade, 1);
 
 // FUNCIONALIDADES
 
-  //ADICIONAR TAREFA
-function adicionarTarefa() {
-  let novoItem = document.createElement('li');
-  let circulo = document.createElement('div');
-  let texto = document.createElement('p');
-  let deletar = document.createElement('div');
-  let novaTarefa = document.createTextNode(input.value);
+//CRIAR ELEMENTOS
+function criarElementos(input) {
+  const novoItem = document.createElement('li');
+  const circulo = document.createElement('div');
+  const texto = document.createElement('p');
+  const deletar = document.createElement('div');
+  const novaTarefa = document.createTextNode(input);
 
   novoItem.classList.add('item');
   circulo.classList.add('circulo');
@@ -56,23 +55,30 @@ function adicionarTarefa() {
 
   lista.appendChild(novoItem);
 
-  input.value = '';
   tarefas.push(novoItem);
+}
+
+//ADICIONAR TAREFA
+function adicionarTarefa() {
+  criarElementos(input.value);
+
+  input.value = '';
   theme = document.querySelectorAll('.theme');
   quantidadeTarefas = tarefas.length;
   atualizaQuantidade(tarefas);
 }
 
-  // ADICIONAR TAREFA AO PRESSIONAR 'ENTER'
-function addListaAfterKeypress(tecla) {
+// ADICIONAR TAREFA AO PRESSIONAR 'ENTER'
+function addTaskAfterKeypress(tecla) {
   if (tecla.key === 'Enter' && input.value != '') {
     adicionarTarefa();
+    localStorage.setItem('lista', JSON.stringify(lista.innerHTML));
   }
 }
 
-input.addEventListener('keypress', addListaAfterKeypress);
+input.addEventListener('keypress', addTaskAfterKeypress);
 
-  // MARCAR TAREFA COMO CONCLUÍDA
+// MARCAR TAREFA COMO CONCLUÍDA
 function tarefaConcluida(e) {
   if (e.target.className === 'circulo') {
     e.target.classList.add('done');
@@ -82,19 +88,20 @@ function tarefaConcluida(e) {
     e.target.parentElement.classList.remove('done');
   }
 }
-lista.addEventListener('click', tarefaConcluida)
+lista.addEventListener('click', tarefaConcluida);
 
-  // DELETAR TAREFA
+// DELETAR TAREFA
 function deletarTarefa(e) {
   if (e.target.className === 'deletar_item') {
     e.target.parentElement.remove();
     tarefas = Array.from(document.querySelectorAll('.item'));
     atualizaQuantidade(tarefas);
+    localStorage.setItem('lista', JSON.stringify(lista.innerHTML));
   }
 }
 lista.addEventListener('click', deletarTarefa);
 
-  // LIMPAR TAREFAS CONCLUÍDAS
+// LIMPAR TAREFAS CONCLUÍDAS
 function limparConcluidos() {
   tarefas.filter((tarefa) => {
     if (tarefa.classList.contains('done')) {
@@ -105,7 +112,7 @@ function limparConcluidos() {
 }
 clear.addEventListener('click', limparConcluidos);
 
-  // FILTRAR ITENS DA TAREFA
+// FILTRAR ITENS DA TAREFA
 function filtrarElementos() {
   filtros.forEach((filtro) => {
     filtro.addEventListener('click', (event) => {
@@ -144,3 +151,10 @@ function filtrarElementos() {
   });
 }
 filtrarElementos();
+
+function mostraListaUsuario() {
+  const listaUsuario = JSON.parse(localStorage.getItem('lista'));
+
+  lista.innerHTML = listaUsuario;
+}
+mostraListaUsuario();
